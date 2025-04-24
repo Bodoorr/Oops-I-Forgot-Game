@@ -1,0 +1,95 @@
+// Game Initialization
+FUNCTION initializeGame():
+    SET score = 0
+    SET highScore = 0
+    SET playerLives = 3
+    SET currentLevel = 1
+    SET gameState = "running"  
+    // Game can be running, paused, or over
+    
+    LOAD game assets (images, sounds)
+    DISPLAY welcome message
+    PROMPT player to start the game
+END FUNCTION
+
+
+Game Initialization:
+Starts the game: Sets the score, lives, level, and loads the game resources. Shows a welcome message.
+
+// Main Game Loop
+FUNCTION mainLoop():
+    WHILE gameState is "running":
+        DISPLAY game board
+        DISPLAY score, playerLives, and currentLevel
+        
+        INPUT playerInput
+
+        IF playerInput is "pause":
+            SET gameState = "paused"
+            CALL pauseGame()
+            CONTINUE
+        
+        IF playerInput is "quit":
+            SET gameState = "over"
+            CONTINUE
+
+        IF input is valid:
+            PROCESS input
+            IF correct move:
+                INCREMENT score
+                DISPLAY score
+                IF level completed:
+                    INCREMENT currentLevel
+                    DISPLAY level up message
+            ELSE:
+                DECREMENT playerLives
+                DISPLAY lives left
+                IF playerLives <= 0:
+                    SET gameState = "over"
+    ENDWHILE
+
+    CALL endGame()
+END FUNCTION
+
+
+Main Game Loop:
+Plays the game: Shows the game board, score, lives, and level. Takes player input to pause, quit, or make moves. Updates score or lives based on what the player does.
+
+
+
+// Pause Game Function
+FUNCTION pauseGame():
+    DISPLAY "Game paused. Press 'resume' or 'quit'."
+    INPUT pauseInput
+    IF pauseInput is "resume":
+        SET gameState = "running"
+    ELSE IF pauseInput is "quit":
+        SET gameState = "over"
+END FUNCTION
+
+
+Pause Game Function:
+Pauses the game: Lets the player choose to resume or quit. Resumes if they want to keep playing.
+
+
+
+
+// End Game
+FUNCTION endGame():
+    DISPLAY final score
+        DISPLAY "Game Over."
+    PROMPT player for replay option (yes/no)
+    IF player chooses "yes":
+        CALL initializeGame()
+        CALL mainLoop()
+    ELSE:
+        DISPLAY "Thank you for playing!"
+END FUNCTION
+
+End Game:
+Ends the game: Shows the final score and a game over message. Asks if the player wants to play again.
+
+
+// Start the game
+CALL initializeGame()
+CALL mainLoop()
