@@ -184,12 +184,11 @@ const resumeGame = () => {
 
 // Quit Game
 const quitGame = () => {
+  document.getElementById('pauseModal').style.display = 'none'
   const confirmation = confirm('Are you sure you want to quit?')
   if (confirmation) {
     gameState = 'over'
     endGame()
-  } else {
-    document.getElementById('pauseModal').style.display = 'none'
   }
 }
 
@@ -223,6 +222,6 @@ document.getElementById('quitGame').onclick = quitGame
 document.getElementById('resumeButton').onclick = resumeGame
 document.getElementById('replayButton').onclick = replayGame
 document.getElementById('exitButton').onclick = exitGame
-
+document.getElementById('quit').onclick = quitGame
 // Initialize hints
 getHints()
