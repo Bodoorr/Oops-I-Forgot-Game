@@ -7,6 +7,8 @@ FUNCTION initializeGame():
     SET gameState = "running"  
     // Game can be running, paused, or over
     
+    //might add hints section
+
     LOAD game assets (images, sounds)
     DISPLAY welcome message
     PROMPT player to start the game

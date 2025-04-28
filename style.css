@@ -1,0 +1,136 @@
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f4f8;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  background-color: #ffcc00; /* Yellow */
+  padding: 10px;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 15px;
+}
+
+nav ul li a {
+  color: #333;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+  color: #ff6699; /* Pink */
+}
+
+/* Game Container */
+#game-container {
+  max-width: 600px; /* Increased width */
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffccff; /* Light Pink */
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+#score,
+#lives,
+#level {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+/* Game Board */
+#gameBoard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Adjust for 3 columns */
+  gap: 15px;
+  margin: 20px 0;
+}
+
+#gameBoard button {
+  width: 80px; /* Increased size */
+  height: 80px; /* Increased size */
+  font-size: 24px;
+  background-color: #0099ff; /* Blue */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+#gameBoard button:hover {
+  background-color: #0066cc; /* Darker Blue */
+  transform: scale(1.05);
+}
+
+/* Action Buttons */
+button {
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #ff6699; /* Pink */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  margin: 5px;
+}
+
+button:hover {
+  background-color: #cc0052; /* Darker Pink */
+  transform: scale(1.05);
+}
+
+/* Modals */
+#endGameModal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  text-align: center;
+  z-index: 1000;
+}
+
+#endGameModal p {
+  margin: 10px 0;
+}
+
+/* Highlighted Cards */
+.highlight {
+  background-color: yellow; /* Highlight color for matching cards */
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+  #game-container {
+    width: 90%;
+  }
+
+  #gameBoard button {
+    width: 60px; /* Adjust for smaller screens */
+    height: 60px; /* Adjust for smaller screens */
+    font-size: 20px;
+  }
+}
+#pauseModal {
+  display: none; /* Ensure it's hidden initially */
+  z-index: 1000; /* Make sure it's on top when displayed */
+  position: fixed; /* Make sure it's positioned correctly */
+}
