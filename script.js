@@ -10,10 +10,8 @@ let matchedCardIndices = [] // array to track selected cards
 let timer
 let timeLeft = 0
 let hintUsed = false
-
+let playerName = 'Player'
 // Alert welcome message
-let playerName = prompt('Enter your name to start the game:') || 'Player'
-alert(`Welcome, ${playerName}! press 'Start Game' to begin.`)
 
 // Generate Cards: generate the cards based on the current level
 const generateCards = (level) => {
@@ -37,6 +35,10 @@ const generateCards = (level) => {
 
 // Game Initialization
 const initializeGame = () => {
+  if (!playerName || playerName === 'Player') {
+    playerName = prompt('Enter your name to start the game:') || 'Player'
+    alert(`Welcome, ${playerName}! Press 'Start Game' to begin.`)
+  }
   score = 0
   if (currentLevel === 1) playerLives = 3
   else if (currentLevel === 2 || currentLevel === 3) playerLives = 4
