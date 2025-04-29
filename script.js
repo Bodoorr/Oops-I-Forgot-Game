@@ -131,7 +131,7 @@ const cardClick = (card, index) => {
         highScore = Math.max(highScore, score) // to update the high score
         alert("It's a match!") // Alert for a match
         matchedCardIndices.push(pickedCardIndices[0], pickedCardIndices[1])
-        const matchedPairs = score
+        const matchedPairs = matchedCardIndices.length / 2
         const totalPairs = cards.length / 2
         if (matchedPairs === totalPairs && currentLevel < 4) {
           pickedCards = []
