@@ -8,6 +8,7 @@ let cards = [] // array for cards
 let pickedCards = [] // array for picked cards
 let pickedCardIndices = [] // array for indices of picked cards
 let matchedCardIndices = [] // array to track selected cards
+let timer
 // Generate Cards: generate the cards based on the current level
 const generateCards = (level) => {
   cards = [] // reset cards
@@ -47,6 +48,7 @@ const initializeGame = () => {
   generateCards(currentLevel) // create cards for the level
   displayCards() // Display the cards on the game board
   updateDisplay()
+  setTimer(currentLevel)
 }
 
 // Hints function
@@ -145,6 +147,7 @@ const cardClick = (card, index) => {
           displayCards()
           updateDisplay()
           getHints()
+          setTimer(currentLevel) //timer for each level
         } //level up condition
       } else {
         playerLives--
@@ -197,6 +200,7 @@ const endGame = () => {
   document.getElementById('finalScore').innerText = score
   document.getElementById('endGameModal').style.display = 'block' // Show end game modal
   document.getElementById('gameBoard').innerHTML = '' //remove all cards
+  clearInterval(timer)
 }
 
 // Replay Game Function
@@ -211,6 +215,41 @@ const exitGame = () => {
   document.getElementById('endGameModal').style.display = 'none'
 }
 
+//function for timer
+const setTimer = (level) => {
+  clearInterval(timer) //to clear timer
+
+  let timeLeft
+  if (level === 1) timeLeft = 120 //level 1
+  else if (level === 2) timeLeft = 150 //level 2
+  else if (level === 3) timeLeft = 180 //level 3
+  else if (level === 4) timeLeft = 210 //level 4
+
+  const timerDisplay = document.getElementById('timer')
+  timerDisplay.innerText = `Time: ${formatTime(timeLeft)}`
+
+  timer = setInterval(() => {
+    timeLeft--
+    timerDisplay.innerText = `Time: ${formatTime(timeLeft)}`
+
+    //condition
+    if (timeLeft <= 0) {
+      clearInterval(timer)
+      gameState = 'over'
+      alert("⏰ Time's up! You lost the game.")
+      endGame()
+    }
+  }, 1000)
+}
+
+//format seconds to MM:SS
+const formatTime = (seconds) => {
+  const mins = Math.floor(seconds / 60)
+    .toString()
+    .padStart(2, '0')
+  const secs = (seconds % 60).toString().padStart(2, '0')
+  return `${mins}:${secs}`
+}
 // Event listeners for buttons
 document.getElementById('startGame').onclick = () => {
   initializeGame() // Start the game
