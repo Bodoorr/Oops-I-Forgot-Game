@@ -15,29 +15,55 @@
       </ul>
     </nav>
     <div id="game-container">
-      <div id="score">Score: 0</div>
-      <div id="lives">Lives: 3</div>
-      <div id="level">Level: 1</div>
+      <!-- Game Status Container -->
+      <div class="game-status-container">
+        <div class="game-status">
+          <span>Score</span>
+          <div id="score" class="game-status-value">0</div>
+          <!-- Dynamic score -->
+        </div>
+        <div class="game-status">
+          <span>Lives</span>
+          <div id="lives" class="game-status-value">3</div>
+          <!-- Dynamic lives -->
+        </div>
+        <div class="game-status">
+          <span>Level</span>
+          <div id="level" class="game-status-value">1</div>
+          <!-- Dynamic level -->
+        </div>
+        <div class="game-status">
+          <span>Time</span>
+          <div id="timer" class="game-status-value">00:00</div>
+          <!-- Dynamic time -->
+        </div>
+      </div>
+
+      <!-- Game Board -->
       <div id="gameBoard"></div>
-      <div id="timer">Time: 00:00</div>
-      <button id="startGame">Start Game</button>
-      <button id="pauseGame">Pause Game</button>
-      <button id="quitGame">Quit Game</button>
-      <button id="hintButton">Get Hint</button>
-      <!-- Added Hint Button -->
-    </div>
 
-    <div id="pauseModal">
-      <p>Game paused.</p>
-      <button id="resumeButton">Resume</button>
-      <button id="quit">Quit</button>
-    </div>
+      <!-- Game Buttons -->
+      <div class="game-buttons">
+        <button id="startGame">Start Game</button>
+        <button id="pauseGame">Pause Game</button>
+        <button id="quitGame">Quit Game</button>
+        <button id="hintButton">Get Hint</button>
+      </div>
 
-    <div id="endGameModal">
-      <p id="finalMessage"></p>
-      <p>Your final score is <span id="finalScore"></span>.</p>
-      <button id="replayButton">Play Again</button>
-      <button id="exitButton">Exit</button>
+      <!-- Pause Modal -->
+      <div id="pauseModal">
+        <p>Game paused.</p>
+        <button id="resumeButton">Resume</button>
+        <button id="quit">Quit</button>
+      </div>
+
+      <!-- End Game Modal -->
+      <div id="endGameModal">
+        <p id="finalMessage"></p>
+        <p>Your final score is <span id="finalScore"></span>.</p>
+        <button id="replayButton">Play Again</button>
+        <button id="exitButton">Exit</button>
+      </div>
     </div>
   </body>
 </html>

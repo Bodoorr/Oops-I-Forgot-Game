@@ -11,7 +11,6 @@ let timer
 let timeLeft = 0
 let hintUsed = false
 let playerName = 'Player'
-// Alert welcome message
 
 // Generate Cards: generate the cards based on the current level
 const generateCards = (level) => {

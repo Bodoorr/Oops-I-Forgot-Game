@@ -9,6 +9,7 @@
   font-family: 'Roboto', sans-serif;
 }
 
+/* Body Styling */
 body {
   background-color: #f9f3ff; /* Light lavender background for a calming effect */
   color: #333; /* Darker text for contrast */
@@ -27,9 +28,9 @@ nav {
 
 nav ul {
   list-style-type: none; /* Remove number bullets */
-  display: flex;
-  justify-content: center; /* Center the nav items */
-  gap: 30px;
+  display: flex; /* Center the nav items */
+  justify-content: center;
+  gap: 40px; /* Adjust the gap */
 }
 
 nav ul li {
@@ -52,38 +53,46 @@ nav a:hover {
 .container {
   text-align: center;
   padding: 50px 20px;
-  animation: fadeIn 1s ease; /* Fade-in animation */
+  animation: fadeIn 1s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - 100px); /* subtracting nav height */
 }
 
-h1 {
-  font-size: 3rem; /* Larger title */
+.welcome {
+  font-size: 1.8rem;
+  color: #666; /* Subtle gray */
+  display: block;
+  margin-bottom: 10px;
+}
+
+.game-name {
+  font-size: 3rem;
   color: #ff4500; /* Vibrant orange */
-  margin-bottom: 20px;
+  font-weight: bold;
 }
 
 .button-wrapper {
   display: flex; /* Flexbox for button alignment */
   justify-content: center;
+  gap: 20px; /* Adjust the gap between buttons */
 }
 
 button {
   background-color: #ffdb58; /* Yellow background */
   border: none;
   color: black;
-  padding: 15px 30px; /* Larger padding for a "button" feel */
-  font-size: 1.5rem; /* Larger font size */
+  padding: 10px 20px; /* Smaller padding */
+  font-size: 1.2rem; /* Smaller font size */
+  border-radius: 20px; /* Slightly smaller border radius */
   cursor: pointer;
-  border-radius: 25px; /* Round buttons */
   margin: 10px; /* Spacing between buttons */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
   position: relative; /* For animations */
   overflow: hidden;
   transition: background-color 0.3s; /* Smooth background transition */
-}
-
-button:hover {
-  background-color: #ffe083; /* Lighter yellow on hover */
-  animation: shake 0.3s; /* Shake animation for interaction */
+  display: inline-block; /* Force inline-block layout */
 }
 
 /* Button hover shake effect */
@@ -103,6 +112,11 @@ button:hover {
   100% {
     transform: translate(0, 0);
   }
+}
+
+button:hover {
+  background-color: #ffe083; /* Lighter yellow on hover */
+  animation: shake 0.3s; /* Shake animation for interaction */
 }
 
 /* Responsive design */
@@ -184,4 +198,60 @@ button:hover {
 
 #timer:before {
   background-image: url('path/to/timer-icon.svg'); /* Replace with your timer icon path */
+}
+
+/* Ensure the Pause and Hint buttons have no extra space */
+#pauseGame,
+#hintButton {
+  margin-left: 0; /* Remove left margin */
+  padding-left: 0; /* Remove padding */
+}
+
+button#pauseGame,
+button#hintButton {
+  margin-left: 0; /* Ensure no extra margin */
+}
+
+/* Fix button container layout */
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Add consistent gap between buttons */
+  margin-left: 0; /* Remove any margin from left */
+  padding-left: 0; /* Remove padding from left */
+}
+
+/* Game status container for score, lives, level, and time */
+.game-status-container {
+  display: flex; /* Use flexbox for an inline layout */
+  justify-content: center; /* Center the status items horizontally */
+  align-items: center; /* Align items vertically */
+  gap: 30px; /* Space between the status items */
+  padding: 20px;
+  background-color: #fff; /* White background for the status bar */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  margin: 20px 0; /* Spacing above and below */
+}
+
+/* Individual status item (score, lives, level, time) */
+.game-status {
+  font-size: 1.5rem; /* Increased font size for better readability */
+  font-weight: bold; /* Bold font for prominence */
+  color: #ff4500; /* Use the vibrant orange color */
+  text-align: center; /* Center align the text */
+}
+
+/* Label styling (e.g., Score, Lives, Level, Time) */
+.game-status span {
+  font-size: 1rem; /* Slightly smaller font size for labels */
+  color: #333; /* Dark color for the labels */
+  display: block; /* Ensures the label is above the value */
+  margin-bottom: 5px; /* Small space between label and value */
+}
+
+/* Value styling (the numbers) */
+.game-status-value {
+  font-size: 1.5rem; /* Larger font size for the values */
+  color: #ff4500; /* Match the color to the game theme */
 }
