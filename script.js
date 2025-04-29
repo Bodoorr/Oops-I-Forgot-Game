@@ -8,6 +8,7 @@ let pickedCards = [] // array for picked cards
 let pickedCardIndices = [] // array for indices of picked cards
 let matchedCardIndices = [] // array to track selected cards
 let timer
+let timeLeft = 0
 let hintUsed = false
 
 // Alert welcome message
@@ -43,6 +44,7 @@ const initializeGame = () => {
   pickedCards = [] // reset picked cards
   pickedCardIndices = []
   matchedCardIndices = []
+  hintUsed = false
   generateCards(currentLevel) // create cards for the level
   displayCards() // Display the cards on the game board
   updateDisplay()
@@ -57,6 +59,7 @@ const initializeGame = () => {
 const getHints = () => {
   const hintButton = document.getElementById('hintButton')
   hintButton.disabled = false
+  hintButton.innerText = 'Get Hint'
   hintUsed = false
   hintButton.onclick = () => {
     if (gameState !== 'running') return
@@ -83,7 +86,9 @@ const getHints = () => {
     for (const indices of Object.values(cardCounts)) {
       if (indices.length > 1) {
         highlightCards(indices[0], indices[1])
+        hintUsed = true
         hintButton.disabled = true
+        hintButton.innerText = 'Hint used'
         return
       }
     }
@@ -199,6 +204,7 @@ const cardClick = (card, index) => {
 // Pause Game
 const pauseGame = () => {
   gameState = 'paused'
+  clearInterval(timer)
   document.getElementById('pauseModal').style.display = 'block' // Show pause modal
   document.getElementById('game-container').style.display = 'none'
 }
@@ -209,6 +215,7 @@ const resumeGame = () => {
   document.getElementById('pauseModal').style.display = 'none' // Hide pause modal
   document.getElementById('game-container').style.display = 'block'
   alert('Game resumed')
+  startTimer()
 }
 
 // Quit Game
@@ -240,6 +247,7 @@ const endGame = () => {
 // Replay Game Function
 const replayGame = () => {
   document.getElementById('endGameModal').style.display = 'none'
+  document.getElementById('game-container').style.display = 'block'
   initializeGame()
 }
 
@@ -251,15 +259,8 @@ const exitGame = () => {
 }
 
 //function for timer
-const setTimer = (level) => {
-  clearInterval(timer) //to clear timer
-
-  let timeLeft
-  if (level === 1) timeLeft = 120 //level 1
-  else if (level === 2) timeLeft = 150 //level 2
-  else if (level === 3) timeLeft = 180 //level 3
-  else if (level === 4) timeLeft = 210 //level 4
-
+// Global startTimer
+const startTimer = () => {
   const timerDisplay = document.getElementById('timer')
   timerDisplay.innerText = `Time: ${formatTime(timeLeft)}`
 
@@ -267,7 +268,6 @@ const setTimer = (level) => {
     timeLeft--
     timerDisplay.innerText = `Time: ${formatTime(timeLeft)}`
 
-    //condition
     if (timeLeft <= 0) {
       clearInterval(timer)
       gameState = 'over'
@@ -275,6 +275,17 @@ const setTimer = (level) => {
       endGame()
     }
   }, 1000)
+}
+
+// Clean setTimer function
+const setTimer = (level) => {
+  clearInterval(timer)
+  if (level === 1) timeLeft = 120
+  else if (level === 2) timeLeft = 150
+  else if (level === 3) timeLeft = 180
+  else if (level === 4) timeLeft = 210
+
+  startTimer()
 }
 
 //format seconds to MM:SS (USE AI TO FIGURE THE CODE OUT)
