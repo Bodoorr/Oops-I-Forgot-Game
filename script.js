@@ -48,7 +48,9 @@ const initializeGame = () => {
   generateCards(currentLevel) // create cards for the level
   displayCards() // Display the cards on the game board
   updateDisplay()
-  setTimer(currentLevel)
+  peekCards(() => {
+    setTimer(currentLevel)
+  })
 }
 
 // Hints function
@@ -147,7 +149,9 @@ const cardClick = (card, index) => {
           displayCards()
           updateDisplay()
           getHints()
-          setTimer(currentLevel) //timer for each level
+          peekCards(() => {
+            setTimer(currentLevel) //timer for each level
+          })
         } //level up condition
       } else {
         playerLives--
@@ -242,7 +246,7 @@ const setTimer = (level) => {
   }, 1000)
 }
 
-//format seconds to MM:SS
+//format seconds to MM:SS (USE AI TO FIGURE THE CODE OUT)
 const formatTime = (seconds) => {
   const mins = Math.floor(seconds / 60)
     .toString()
@@ -250,6 +254,25 @@ const formatTime = (seconds) => {
   const secs = (seconds % 60).toString().padStart(2, '0')
   return `${mins}:${secs}`
 }
+//peek at cards function
+const peekCards = (afterPeek) => {
+  const buttons = document.querySelectorAll('#gameBoard button')
+
+  //to show cards
+  buttons.forEach((button, index) => {
+    button.innerText = cards[index]
+    button.disabled = true
+  })
+
+  setTimeout(() => {
+    buttons.forEach((button) => {
+      button.innerText = '?'
+      button.disabled = false
+    })
+    if (afterPeek) afterPeek()
+  }, 3000)
+}
+
 // Event listeners for buttons
 document.getElementById('startGame').onclick = () => {
   initializeGame() // Start the game
