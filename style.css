@@ -1,3 +1,4 @@
+/* Base Styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -29,6 +30,39 @@ h1 {
   font-weight: bold;
 }
 
+body.index-page .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Center vertically */
+  text-align: center; /* Center text horizontally */
+}
+
+body.index-page .startGameContainer {
+  margin-top: 20px;
+  text-align: center; /* Ensure the Start Game button is centered */
+}
+
+/* Style the Start Game button on index.html */
+body.index-page #startGame {
+  background-color: #ff69b4;
+  color: white;
+  font-size: 0.9em;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 160px;
+  height: 50px;
+  transition: transform 0.2s ease-in-out, background-color 0.3s; /* Added background color transition */
+}
+
+/* Hover effect for Start Game button */
+body.index-page #startGame:hover {
+  transform: scale(0.95);
+  background-color: #ff4b6f; /* Change background color on hover */
+}
 /* Navigation Bar */
 nav {
   width: 100%;
@@ -36,12 +70,9 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 16px 20px;
-  box-sizing: border-box;
   background-color: #f0f0f0;
-  position: relative;
 }
 
-/* Remove list dots */
 nav ul {
   display: flex;
   list-style: none;
@@ -61,6 +92,7 @@ nav ul li a {
   text-decoration: none;
   color: #333;
   font-weight: bold;
+  transition: color 0.3s;
 }
 
 nav ul li a:hover {
@@ -91,7 +123,7 @@ nav ul li a:hover {
   color: #ff69b4;
 }
 
-/* Game Board (Card Area) */
+/* Game Board */
 #gameBoard {
   display: grid;
   grid-template-columns: repeat(4, 150px);
@@ -115,16 +147,12 @@ button {
 }
 
 button:hover {
-  background-color: #ff69b4;
+  background-color: #ff4b6f;
 }
 
 button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
-}
-
-button:focus {
-  outline: none;
 }
 
 /* Game Buttons */
@@ -148,16 +176,13 @@ button:focus {
 }
 
 .game-buttons button:hover {
-  background-color: #ff69b4;
+  background-color: #ff4b6f;
 }
 
-.game-buttons button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-/* Common Modal Styling */
-.modal {
+/* Modal Styling */
+.modal,
+#pauseModal,
+#endGameModal {
   display: none;
   position: fixed;
   top: 50%;
@@ -171,14 +196,11 @@ button:focus {
   z-index: 9999;
   width: 240px;
   min-height: 140px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
-.modal button {
+.modal button,
+#pauseModal button,
+#endGameModal button {
   width: 120px;
   height: 40px;
   margin: 5px;
@@ -191,122 +213,20 @@ button:focus {
   transition: background-color 0.3s;
 }
 
-.modal button:hover {
+.modal button:hover,
+#pauseModal button:hover,
+#endGameModal button:hover {
   background-color: #ff4b6f;
 }
 
-.modal button {
-  display: inline-block;
-  margin: 10px;
-}
-
-/* Specific Styling for Pause Modal */
-#pauseModal {
-  display: none;
-  width: 240px;
-  min-height: 140px;
-}
-
-/* Specific Styling for End Game Modal */
-#endGameModal {
-  display: none;
-  width: 240px;
-  min-height: 140px;
-}
-
+/* Timer */
+#timer,
 #finalScore {
   font-size: 1.5rem;
-  font-weight: bold;
   color: #ff69b4;
 }
 
-/* Styling for the Timer */
-#timer {
-  font-size: 1.5rem;
-  color: #ff69b4;
-}
-
-body.index-page .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Center vertically */
-  text-align: center; /* Center text horizontally */
-}
-
-body.index-page .startGameContainer {
-  margin-top: 20px;
-}
-
-/* Center the Start Game button ONLY on index.html */
-body.index-page .startGameContainer {
-  text-align: center;
-}
-
-/* Style the Start Game button on index.html */
-body.index-page #startGame {
-  background-color: #ff69b4;
-  color: white;
-  font-size: 0.9em;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 160px;
-  height: 50px;
-  transition: transform 0.2s ease-in-out;
-}
-
-body.index-page #startGame:hover {
-  transform: scale(0.95);
-}
-
-#game-container {
-  padding-top: 40px; /* Adjust this value as needed */
-}
-
-/* Pause Modal */
-#pauseModal {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 30px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  z-index: 9999;
-  width: 600px;
-  min-height: 200px;
-}
-
-#pauseModal p {
-  font-size: 1.2rem;
-  color: #333;
-  margin: 100px;
-}
-
-#pauseModal button {
-  width: 120px;
-  height: 40px;
-  margin-top: 10px;
-  font-size: 1rem;
-  color: white;
-  background-color: #ff69b4;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-#pauseModal button:hover {
-  background-color: #ff4b6f;
-}
-
-/* Mobile Responsive */
+/* Responsive Styles */
 @media (max-width: 768px) {
   #gameBoard {
     grid-template-columns: repeat(3, 120px);
@@ -322,17 +242,11 @@ body.index-page #startGame:hover {
     height: 35px;
     font-size: 0.9rem;
   }
-
-  #pauseModal,
-  #endGameModal {
-    width: 80%;
-  }
 }
 
 @media (max-width: 480px) {
   #gameBoard {
     grid-template-columns: repeat(2, 90px);
-    gap: 12px;
     padding: 10px;
   }
 
@@ -345,28 +259,15 @@ body.index-page #startGame:hover {
   .game-status-value,
   #timer {
     font-size: 0.9rem;
-    font-display: inline;
   }
 
   .game-status {
     width: 45%;
-    text-align: center;
-  }
-
-  .game-status span {
-    font-size: 0.9rem;
-  }
-
-  .game-status-container {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
   }
 
   .game-buttons {
     flex-direction: column;
     align-items: center;
-    gap: 10px;
   }
 
   .game-buttons button {
@@ -387,30 +288,7 @@ body.index-page #startGame:hover {
   #pauseModal,
   #endGameModal {
     width: 90%;
-    min-height: auto;
-    padding: 16px;
   }
-
-  #pauseModal p {
-    font-size: 1rem;
-    margin: 20px 0;
-  }
-
-  .modal button,
-  #pauseModal button {
-    width: 100px;
-    height: 35px;
-    font-size: 0.9rem;
-  }
-}
-
-/* Card Flip Animation */
-.card-inner {
-  transition: transform 0.6s ease-in-out;
-}
-
-.card.flipped .card-inner {
-  transform: rotateY(180deg);
 }
 
 /* Dark Mode */
@@ -440,484 +318,11 @@ body.dark-mode button:hover {
   background-color: #ff4b6f;
 }
 
-body.dark-mode .game-buttons button {
-  background-color: #ff69b4;
-}
-
-body.dark-mode .game-buttons button:hover {
-  background-color: #ff4b6f;
-}
+/* Dark Mode Modal Styles */
 body.dark-mode .modal,
 body.dark-mode #pauseModal,
 body.dark-mode #endGameModal {
   background-color: #333;
-  color: #fff;
-}
-
-body.dark-mode .modal button,
-body.dark-mode #pauseModal button,
-body.dark-mode #endGameModal button {
-  background-color: #ff69b4;
-  color: white;
-}
-
-body.dark-mode .modal button:hover,
-body.dark-mode #pauseModal button:hover,
-body.dark-mode #endGameModal button:hover {
-  background-color: #ff4b6f;
-}
-
-/* ✅ Dark Mode Toggle Icon Styling */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f0f0f0;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Header Styling */
-h1 {
-  color: #ff69b4;
-  font-size: 2rem;
-  margin: 20px 0;
-  text-align: center;
-}
-
-.welcome {
-  display: block;
-  font-size: 1em;
-}
-
-.game-name {
-  display: block;
-  font-size: 1.6em;
-  font-weight: bold;
-}
-
-/* Navigation Bar */
-nav {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 20px;
-  box-sizing: border-box;
-  background-color: #f0f0f0;
-  position: relative;
-}
-
-/* Remove list dots */
-nav ul {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-nav ul li {
-  margin-right: 20px;
-}
-
-nav ul li:last-child {
-  margin-right: 0;
-}
-
-nav ul li a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-}
-
-nav ul li a:hover {
-  color: #ff69b4;
-}
-
-/* Game Status Container */
-.game-status-container {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 20px;
-  width: 100%;
-}
-
-.game-status {
-  color: #333;
-  text-align: center;
-}
-
-.game-status span {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.game-status-value {
-  font-size: 1.2rem;
-  color: #ff69b4;
-}
-
-/* Game Board (Card Area) */
-#gameBoard {
-  display: grid;
-  grid-template-columns: repeat(4, 150px);
-  gap: 20px;
-  justify-content: center;
-  margin-bottom: 20px;
-  padding: 20px;
-}
-
-button {
-  width: 100%;
-  height: 150px;
-  font-size: 1.5rem;
-  color: white;
-  background-color: #ff69b4;
-  border: none;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-button:hover {
-  background-color: #ff69b4;
-}
-
-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-button:focus {
-  outline: none;
-}
-
-/* Game Buttons */
-.game-buttons {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.game-buttons button {
-  width: 120px;
-  height: 40px;
-  font-size: 1rem;
-  color: white;
-  background-color: #ff69b4;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.game-buttons button:hover {
-  background-color: #ff69b4;
-}
-
-.game-buttons button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-/* Common Modal Styling */
-.modal {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  z-index: 9999;
-  width: 240px;
-  min-height: 140px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal button {
-  width: 120px;
-  height: 40px;
-  margin: 5px;
-  font-size: 1rem;
-  color: white;
-  background-color: #ff69b4;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.modal button:hover {
-  background-color: #ff4b6f;
-}
-
-.modal button {
-  display: inline-block;
-  margin: 10px;
-}
-
-/* Specific Styling for Pause Modal */
-#pauseModal {
-  display: none;
-  width: 240px;
-  min-height: 140px;
-}
-
-/* Specific Styling for End Game Modal */
-#endGameModal {
-  display: none;
-  width: 240px;
-  min-height: 140px;
-}
-
-#finalScore {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #ff69b4;
-}
-
-/* Styling for the Timer */
-#timer {
-  font-size: 1.5rem;
-  color: #ff69b4;
-}
-
-/* Center the Start Game button ONLY on index.html */
-body.index-page .startGameContainer {
-  text-align: center;
-}
-
-/* Style the Start Game button on index.html */
-body.index-page #startGame {
-  background-color: #ff69b4;
-  color: white;
-  font-size: 0.9em;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 160px;
-  height: 50px;
-  transition: transform 0.2s ease-in-out;
-}
-
-body.index-page #startGame:hover {
-  transform: scale(0.95);
-}
-
-/* Pause Modal */
-#pauseModal {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 30px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  z-index: 9999;
-  width: 600px;
-  min-height: 200px;
-}
-
-#pauseModal p {
-  font-size: 1.2rem;
-  color: #333;
-  margin: 100px;
-}
-
-#pauseModal button {
-  width: 120px;
-  height: 40px;
-  margin-top: 10px;
-  font-size: 1rem;
-  color: white;
-  background-color: #ff69b4;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-#pauseModal button:hover {
-  background-color: #ff4b6f;
-}
-
-/* ----------- Tablet Screens (up to 768px) ----------- */
-@media (max-width: 768px) {
-  /* Game board layout */
-  #gameBoard {
-    grid-template-columns: repeat(3, 120px);
-  }
-
-  /* Card buttons */
-  button {
-    height: 120px;
-    font-size: 1.2rem;
-  }
-
-  /* Control buttons */
-  .game-buttons button {
-    width: 100px;
-    height: 35px;
-    font-size: 0.9rem;
-  }
-
-  /* Modals */
-  #pauseModal,
-  #endGameModal {
-    width: 80%;
-  }
-}
-
-/* ----------- Mobile Phones (up to 480px) ----------- */
-@media (max-width: 480px) {
-  /* Game board layout */
-
-  #gameBoard {
-    grid-template-columns: repeat(2, 90px);
-    gap: 12px;
-    padding: 10px;
-  }
-
-  /* Card buttons */
-  button {
-    height: 60px;
-    font-size: 0.9rem;
-    border-radius: 6px;
-  }
-
-  /* Game status section */
-  .game-status-value,
-  #timer {
-    font-size: 0.9rem;
-    font-display: inline;
-  }
-
-  .game-status {
-    width: 45%;
-    text-align: center;
-  }
-
-  .game-status span {
-    font-size: 0.9rem;
-  }
-
-  .game-status-container {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-  }
-
-  /* Game control buttons */
-  .game-buttons {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .game-buttons button {
-    width: 100px;
-    height: 32px;
-    font-size: 0.8rem;
-  }
-
-  /* Navigation and headings */
-  nav {
-    font-size: 0.9rem;
-  }
-
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  /* Modal layout */
-  .modal,
-  #pauseModal,
-  #endGameModal {
-    width: 90%;
-    min-height: auto;
-    padding: 16px;
-  }
-
-  /* Modal content */
-  #pauseModal p {
-    font-size: 1rem;
-    margin: 20px 0;
-  }
-
-  .modal button,
-  #pauseModal button {
-    width: 100px;
-    height: 35px;
-    font-size: 0.9rem;
-  }
-}
-
-/* Card Flip Animation */
-.card-inner {
-  transition: transform 0.6s ease-in-out;
-}
-
-.card.flipped .card-inner {
-  transform: rotateY(180deg);
-}
-
-/* Dark Mode */
-body.dark-mode {
-  background-color: #121212;
-  color: #fff;
-}
-
-body.dark-mode nav {
-  background-color: #121212;
-}
-
-body.dark-mode h1,
-body.dark-mode .game-name,
-body.dark-mode .game-status span,
-body.dark-mode .game-status-value,
-body.dark-mode #timer,
-body.dark-mode #finalScore {
-  color: #ff69b4;
-}
-
-body.dark-mode button {
-  background-color: #ff69b4;
-}
-
-body.dark-mode button:hover {
-  background-color: #ff4b6f;
-}
-
-body.dark-mode .game-buttons button {
-  background-color: #ff69b4;
-}
-
-body.dark-mode .game-buttons button:hover {
-  background-color: #ff4b6f;
-}
-
-body.dark-mode .modal,
-body.dark-mode #pauseModal,
-body.dark-mode #endGameModal {
-  background-color: #514f4f;
-  color: #fff !important;
 }
 
 body.dark-mode .modal button,
@@ -929,10 +334,10 @@ body.dark-mode #endGameModal button {
 body.dark-mode .modal button:hover,
 body.dark-mode #pauseModal button:hover,
 body.dark-mode #endGameModal button:hover {
-  background-color: #75757543;
+  background-color: #ff4b6f;
 }
 
-/* ✅ Dark Mode Toggle Icon Styling */
+/* Dark Mode Toggle Icon */
 #darkModeToggle {
   position: fixed;
   background: none;
@@ -941,14 +346,8 @@ body.dark-mode #endGameModal button:hover {
   font-size: 1.5rem;
   color: #9b9b9b;
   cursor: pointer;
-  position: absolute;
   top: 20px;
   right: 20px;
-  list-style: none;
-}
-
-#darkModeToggle:hover {
-  color: #ff69b4;
 }
 
 #darkModeToggle:hover {
@@ -957,20 +356,21 @@ body.dark-mode #endGameModal button:hover {
 
 /* General Styles for Lists */
 ul {
-  list-style: none; /* No bullets */
-  margin: 500; /* Remove default margin */
-  padding: 500; /* Remove default padding */
+  list-style: none;
+  margin: 500;
+  padding: 500;
 }
+
 .icon-container {
-  position: fixed; /* Fixed positioning */
-  left: 50%; /* Center it horizontally */
-  top: 20px; /* Align to the top */
-  transform: translateX(-50%); /* Adjust to center */
-  z-index: 1000; /* Ensure it stays on top of other elements */
+  position: fixed;
+  left: 50%;
+  top: 20px;
+  transform: translateX(-50%);
+  z-index: 1000;
 }
 
 .icon-container li {
-  list-style: none; /* No bullets */
-  margin: 0; /* No margin */
-  padding: 0; /* No padding */
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
