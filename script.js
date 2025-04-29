@@ -166,6 +166,7 @@ const cardClick = (card, index) => {
             if (currentLevel === 1) playerLives = 3
             else if (currentLevel === 2 || currentLevel === 3) playerLives = 4
             else if (currentLevel === 4) playerLives = 5
+            currentLevel = 1
 
             alert(
               `Level UP, ${playerName}! Get ready for level ${currentLevel}.`
