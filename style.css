@@ -3,17 +3,17 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f0f0f0;
+  background-color: #f0f0f0; /* Default background color */
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and text color */
 }
 
 /* Header Styling */
 h1 {
-  color: #ff69b4;
+  color: #ff69b4; /* Pink color for headers */
   font-size: 2rem;
   margin-bottom: 20px;
   text-align: center;
@@ -30,6 +30,7 @@ h1 {
   font-weight: bold;
 }
 
+/* Home Page Layout */
 body.index-page .container {
   display: flex;
   flex-direction: column;
@@ -46,7 +47,7 @@ body.index-page .startGameContainer {
 
 /* Style the Start Game button on index.html */
 body.index-page #startGame {
-  background-color: #ff69b4;
+  background-color: #ff69b4; /* Pink background */
   color: white;
   font-size: 0.9em;
   padding: 8px 16px;
@@ -60,9 +61,10 @@ body.index-page #startGame {
 
 /* Hover effect for Start Game button */
 body.index-page #startGame:hover {
-  transform: scale(0.95);
-  background-color: #ff4b6f; /* Change background color on hover */
+  transform: scale(0.95); /* Slightly shrink on hover */
+  background-color: #ff4b6f; /* Darker pink on hover */
 }
+
 /* Navigation Bar */
 nav {
   width: 100%;
@@ -70,7 +72,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 16px 20px;
-  background-color: #f0f0f0;
+  background-color: #f0f0f0; /* Light background for navigation bar */
 }
 
 nav ul {
@@ -92,11 +94,11 @@ nav ul li a {
   text-decoration: none;
   color: #333;
   font-weight: bold;
-  transition: color 0.3s;
+  transition: color 0.3s; /* Smooth transition for link color */
 }
 
 nav ul li a:hover {
-  color: #ff69b4;
+  color: #ff69b4; /* Change link color on hover */
 }
 
 /* Game Status Container */
@@ -120,13 +122,13 @@ nav ul li a:hover {
 
 .game-status-value {
   font-size: 1.2rem;
-  color: #ff69b4;
+  color: #ff69b4; /* Highlight game stats with pink color */
 }
 
-/* Game Board */
+/* Game Board Layout */
 #gameBoard {
   display: grid;
-  grid-template-columns: repeat(4, 150px);
+  grid-template-columns: repeat(4, 150px); /* 4 columns with 150px width */
   gap: 20px;
   justify-content: center;
   margin-bottom: 20px;
@@ -138,24 +140,24 @@ button {
   height: 150px;
   font-size: 1.5rem;
   color: white;
-  background-color: #ff69b4;
+  background-color: #ff69b4; /* Pink color for buttons */
   border: none;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slight shadow effect */
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease; /* Smooth transition for button state changes */
 }
 
 button:hover {
-  background-color: #ff4b6f;
+  background-color: #ff4b6f; /* Darker pink on hover */
 }
 
 button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+  background-color: #ccc; /* Disabled button color */
+  cursor: not-allowed; /* Change cursor to indicate no action is allowed */
 }
 
-/* Game Buttons */
+/* Game Buttons Section */
 .game-buttons {
   display: flex;
   justify-content: space-around;
@@ -168,15 +170,15 @@ button:disabled {
   height: 50px;
   font-size: 1rem;
   color: white;
-  background-color: #ff69b4;
+  background-color: #ff69b4; /* Same pink as other buttons */
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
 }
 
 .game-buttons button:hover {
-  background-color: #ff4b6f;
+  background-color: #ff4b6f; /* Darker pink on hover */
 }
 
 /* Modal Styling */
@@ -198,6 +200,7 @@ button:disabled {
   min-height: 140px;
 }
 
+/* Modal Button Styles */
 .modal button,
 #pauseModal button,
 #endGameModal button {
@@ -206,30 +209,33 @@ button:disabled {
   margin: 5px;
   font-size: 1rem;
   color: white;
-  background-color: #ff69b4;
+  background-color: #ff69b4; /* Pink background for modal buttons */
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
 }
 
 .modal button:hover,
 #pauseModal button:hover,
 #endGameModal button:hover {
-  background-color: #ff4b6f;
+  background-color: #ff4b6f; /* Darker pink on hover */
 }
 
-/* Timer */
+/* Timer Styling */
 #timer,
 #finalScore {
   font-size: 1.5rem;
-  color: #ff69b4;
+  color: #ff69b4; /* Timer and final score in pink */
 }
 
-/* Responsive Styles */
+/* Responsive Styles for Larger Screens */
 @media (max-width: 768px) {
   #gameBoard {
-    grid-template-columns: repeat(3, 120px);
+    grid-template-columns: repeat(
+      3,
+      120px
+    ); /* Reduce to 3 columns for medium screens */
   }
 
   button {
@@ -244,9 +250,10 @@ button:disabled {
   }
 }
 
+/* Responsive Styles for Smaller Screens (Mobile) */
 @media (max-width: 480px) {
   #gameBoard {
-    grid-template-columns: repeat(2, 90px);
+    grid-template-columns: repeat(2, 90px); /* Two columns on mobile */
     padding: 10px;
   }
 
@@ -291,14 +298,14 @@ button:disabled {
   }
 }
 
-/* Dark Mode */
+/* Dark Mode Styles */
 body.dark-mode {
-  background-color: #121212;
-  color: #fff;
+  background-color: #121212; /* Dark background */
+  color: #fff; /* White text for contrast */
 }
 
 body.dark-mode nav {
-  background-color: #121212;
+  background-color: #121212; /* Dark navigation bar */
 }
 
 body.dark-mode h1,
@@ -307,34 +314,34 @@ body.dark-mode .game-status span,
 body.dark-mode .game-status-value,
 body.dark-mode #timer,
 body.dark-mode #finalScore {
-  color: #ff69b4;
+  color: #ff69b4; /* Keep pink color in dark mode */
 }
 
 body.dark-mode button {
-  background-color: #ff69b4;
+  background-color: #ff69b4; /* Pink buttons in dark mode */
 }
 
 body.dark-mode button:hover {
-  background-color: #ff4b6f;
+  background-color: #ff4b6f; /* Darker pink on hover */
 }
 
 /* Dark Mode Modal Styles */
 body.dark-mode .modal,
 body.dark-mode #pauseModal,
 body.dark-mode #endGameModal {
-  background-color: #333;
+  background-color: #333; /* Darker background for modals */
 }
 
 body.dark-mode .modal button,
 body.dark-mode #pauseModal button,
 body.dark-mode #endGameModal button {
-  background-color: #ff69b4;
+  background-color: #ff69b4; /* Pink buttons in dark mode */
 }
 
 body.dark-mode .modal button:hover,
 body.dark-mode #pauseModal button:hover,
 body.dark-mode #endGameModal button:hover {
-  background-color: #ff4b6f;
+  background-color: #ff4b6f; /* Darker pink on hover */
 }
 
 /* Dark Mode Toggle Icon */
@@ -344,14 +351,14 @@ body.dark-mode #endGameModal button:hover {
   border: none;
   box-shadow: none;
   font-size: 1.5rem;
-  color: #9b9b9b;
+  color: #9b9b9b; /* Gray color for the dark mode toggle */
   cursor: pointer;
   top: 20px;
   right: 20px;
 }
 
 #darkModeToggle:hover {
-  color: #ff69b4;
+  color: #ff69b4; /* Pink color on hover */
 }
 
 /* General Styles for Lists */
@@ -365,7 +372,8 @@ ul {
   position: fixed;
   left: 50%;
   top: 20px;
-  transform: translateX(-50%);
+  display: flex;
+  transform: translateX(-50%); /* Center the icon horizontally */
   z-index: 1000;
 }
 
