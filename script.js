@@ -114,7 +114,6 @@ const cardClick = (card, index) => {
     alert('You already picked this card!') // Alert if the card is already picked
     return
   }
-
   const buttons = document.querySelectorAll('#gameBoard button')
   buttons[index].innerText = card
   pickedCards.push(card)
