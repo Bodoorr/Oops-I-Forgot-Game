@@ -8,6 +8,7 @@ let pickedCards = [] // array for picked cards
 let pickedCardIndices = [] // array for indices of picked cards
 let matchedCardIndices = [] // array to track selected cards
 let timer
+let hintUsed = false
 
 // Alert welcome message
 let playerName = prompt('Enter your name to start the game:') || 'Player'
@@ -49,14 +50,27 @@ const initializeGame = () => {
     setTimer(currentLevel)
   })
   document.getElementById('startGame').style.display = 'none'
+  getHints()
 }
 
 // Hints function
 const getHints = () => {
   const hintButton = document.getElementById('hintButton')
   hintButton.disabled = false
+  hintUsed = false
   hintButton.onclick = () => {
     if (gameState !== 'running') return
+
+    if (hintUsed) {
+      alert(`No hints left for this level!`)
+      return
+    }
+
+    const confirmUse = confirm(
+      'You can only use one hint per level. Are you sure you want to use it?'
+    )
+
+    if (!confirmUse) return
     const cardCounts = {}
     cards.forEach((card, index) => {
       if (
