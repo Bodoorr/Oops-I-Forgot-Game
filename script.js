@@ -34,6 +34,7 @@ const generateCards = (level) => {
 
 // Game Initialization
 const initializeGame = () => {
+  document.getElementById('gameContent').style.display = 'block'
   if (!playerName || playerName === 'Player') {
     playerName = prompt('Enter your name to start the game:') || 'Player'
     alert(`Welcome, ${playerName}! Press 'Start Game' to begin.`)
@@ -209,17 +210,18 @@ const cardClick = (card, index) => {
 
 // Pause Game
 const pauseGame = () => {
+  console.log('pause button clicked')
   gameState = 'paused'
   clearInterval(timer)
   document.getElementById('pauseModal').style.display = 'block' // Show pause modal
-  document.getElementById('game-container').style.display = 'none'
+  document.getElementById('gameContent').style.display = 'none'
 }
 
 // Resume Game
 const resumeGame = () => {
   gameState = 'running'
   document.getElementById('pauseModal').style.display = 'none' // Hide pause modal
-  document.getElementById('game-container').style.display = 'block'
+  document.getElementById('gameContent').style.display = 'block'
   alert('Game resumed')
   startTimer()
 }
@@ -253,7 +255,7 @@ const endGame = () => {
 // Replay Game Function
 const replayGame = () => {
   document.getElementById('endGameModal').style.display = 'none'
-  document.getElementById('game-container').style.display = 'block'
+  document.getElementById('gameContent').style.display = 'block'
   initializeGame()
 }
 
@@ -262,6 +264,8 @@ const exitGame = () => {
   alert(`Thank you for playing, ${playerName}!`)
   document.getElementById('endGameModal').style.display = 'none'
   document.getElementById('startGame').style.display = 'inline-block'
+  document.getElementById('gameContent').style.display = 'none'
+  clearInterval(timer)
 }
 
 //function for timer

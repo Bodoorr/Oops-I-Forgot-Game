@@ -1,257 +1,423 @@
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
-/* General Resets */
-* {
-  box-sizing: border-box;
+/* General Body and Font Style */
+body {
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
-}
-
-/* Body Styling */
-body {
-  background-color: #f9f3ff; /* Light lavender background for a calming effect */
-  color: #333; /* Darker text for contrast */
-}
-
-/* Navigation styles */
-nav {
-  background: linear-gradient(
-    to right,
-    #ff69b4,
-    #ffd700
-  ); /* Gradient background from pink to yellow */
-  padding: 15px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Slight shadow */
-}
-
-nav ul {
-  list-style-type: none; /* Remove number bullets */
-  display: flex; /* Center the nav items */
-  justify-content: center;
-  gap: 40px; /* Adjust the gap */
-}
-
-nav ul li {
-  position: relative; /* Position for hover effect */
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s, transform 0.3s; /* Smooth transitions */
-}
-
-nav a:hover {
-  color: #333; /* Change link color on hover */
-  transform: translateY(-2px); /* Lift effect on hover */
-}
-
-/* Container styles */
-.container {
-  text-align: center;
-  padding: 50px 20px;
-  animation: fadeIn 1s ease;
+  background-color: #f0f0f0;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  min-height: calc(100vh - 100px); /* subtracting nav height */
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions for dark mode */
+}
+
+h1 {
+  color: #ff69b4;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .welcome {
-  font-size: 1.8rem;
-  color: #666; /* Subtle gray */
   display: block;
-  margin-bottom: 10px;
+  font-size: 1em;
 }
 
 .game-name {
-  font-size: 3rem;
-  color: #ff4500; /* Vibrant orange */
+  display: block;
+  font-size: 1.6em;
   font-weight: bold;
 }
 
-.button-wrapper {
-  display: flex; /* Flexbox for button alignment */
+/* Navigation Bar */
+nav {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 1.1rem;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  color: #ff69b4;
+}
+
+/* Game Status Container */
+.game-status-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.game-status {
+  color: #333;
+  text-align: center;
+}
+
+.game-status span {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.game-status-value {
+  font-size: 1.2rem;
+  color: #ff69b4;
+}
+
+/* Game Board (Card Area) */
+#gameBoard {
+  display: grid;
+  grid-template-columns: repeat(4, 150px);
+  gap: 20px;
   justify-content: center;
-  gap: 20px; /* Adjust the gap between buttons */
+  margin-bottom: 20px;
+  padding: 20px;
 }
 
 button {
-  background-color: #ffdb58; /* Yellow background */
+  width: 100%;
+  height: 150px;
+  font-size: 1.5rem;
+  color: white;
+  background-color: #ff69b4;
   border: none;
-  color: black;
-  padding: 10px 20px; /* Smaller padding */
-  font-size: 1.2rem; /* Smaller font size */
-  border-radius: 20px; /* Slightly smaller border radius */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  margin: 10px; /* Spacing between buttons */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
-  position: relative; /* For animations */
-  overflow: hidden;
-  transition: background-color 0.3s; /* Smooth background transition */
-  display: inline-block; /* Force inline-block layout */
-}
-
-/* Button hover shake effect */
-@keyframes shake {
-  0% {
-    transform: translate(1px, 0);
-  }
-  25% {
-    transform: translate(-1px, 0);
-  }
-  50% {
-    transform: translate(1px, 0);
-  }
-  75% {
-    transform: translate(-1px, 0);
-  }
-  100% {
-    transform: translate(0, 0);
-  }
+  transition: all 0.3s ease;
 }
 
 button:hover {
-  background-color: #ffe083; /* Lighter yellow on hover */
-  animation: shake 0.3s; /* Shake animation for interaction */
+  background-color: #ff69b4;
 }
 
-/* Responsive design */
-@media (max-width: 600px) {
-  h1 {
-    font-size: 2rem; /* Smaller title on mobile */
-  }
-  button {
-    width: 100%; /* Full width buttons on mobile */
-    font-size: 1.2rem;
-    padding: 10px; /* Adjust padding */
-  }
-  .container {
-    padding: 20px 10px; /* Adjust padding for smaller screens */
-  }
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
-/* Keyframe for fade-in animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+button:focus {
+  outline: none;
 }
 
-/* Pause Modal and End Game Modal styles */
-#pauseModal,
-#endGameModal {
+/* Game Buttons */
+.game-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.game-buttons button {
+  width: 120px;
+  height: 40px;
+  font-size: 1rem;
+  color: white;
+  background-color: #ff69b4;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.game-buttons button:hover {
+  background-color: #ff69b4;
+}
+
+.game-buttons button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Common Modal Styling */
+.modal {
   display: none; /* Initially hidden */
-  position: fixed; /* Position it overlay */
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(255, 255, 255, 0.95); /* Slightly transparent */
-  padding: 30px; /* Padding around the content */
-  border: 2px solid #ff69b4; /* Border matching the theme */
-  border-radius: 15px; /* Rounded corners for softer look */
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); /* Shadow for depth */
-  text-align: center; /* Center text */
-  animation: slideIn 0.5s forwards; /* Slide in animation */
-}
-
-@keyframes slideIn {
-  from {
-    transform: translate(-50%, -100%); /* Start from above */
-    opacity: 0;
-  }
-  to {
-    transform: translate(-50%, -50%); /* Final position */
-    opacity: 1;
-  }
-}
-
-/* Button styles in Modals */
-#resumeButton,
-#quit,
-#replayButton,
-#exitButton {
-  background-color: #ff4500; /* Orange color */
-  border-radius: 10px; /* Round corners for buttons */
-}
-
-/* Icon styles */
-#pauseGame:before,
-#hintButton:before {
-  content: ''; /* Placeholder for icon */
-  display: inline-block;
-  width: 20px; /* Width of icon */
-  height: 20px; /* Height of icon */
-  background-size: cover; /* Cover the background image */
-}
-
-/* Pause and Timer icon placeholders */
-#pauseGame:before {
-  background-image: url('path/to/pause-icon.svg'); /* Replace with your pause icon path */
-}
-
-#timer:before {
-  background-image: url('path/to/timer-icon.svg'); /* Replace with your timer icon path */
-}
-
-/* Ensure the Pause and Hint buttons have no extra space */
-#pauseGame,
-#hintButton {
-  margin-left: 0; /* Remove left margin */
-  padding-left: 0; /* Remove padding */
-}
-
-button#pauseGame,
-button#hintButton {
-  margin-left: 0; /* Ensure no extra margin */
-}
-
-/* Fix button container layout */
-.button-wrapper {
-  display: flex;
-  justify-content: center;
-  gap: 20px; /* Add consistent gap between buttons */
-  margin-left: 0; /* Remove any margin from left */
-  padding-left: 0; /* Remove padding from left */
-}
-
-/* Game status container for score, lives, level, and time */
-.game-status-container {
-  display: flex; /* Use flexbox for an inline layout */
-  justify-content: center; /* Center the status items horizontally */
-  align-items: center; /* Align items vertically */
-  gap: 30px; /* Space between the status items */
   padding: 20px;
-  background-color: #fff; /* White background for the status bar */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  margin: 20px 0; /* Spacing above and below */
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  z-index: 9999; /* Ensure modal is on top */
+  width: 240px; /* Fixed width */
+  min-height: 140px; /* Adjust height */
+  overflow: hidden; /* Prevent overflow */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Individual status item (score, lives, level, time) */
-.game-status {
-  font-size: 1.5rem; /* Increased font size for better readability */
-  font-weight: bold; /* Bold font for prominence */
-  color: #ff4500; /* Use the vibrant orange color */
-  text-align: center; /* Center align the text */
+.modal button {
+  width: 120px;
+  height: 40px;
+  margin: 5px;
+  font-size: 1rem;
+  color: white;
+  background-color: #ff69b4;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-/* Label styling (e.g., Score, Lives, Level, Time) */
-.game-status span {
-  font-size: 1rem; /* Slightly smaller font size for labels */
-  color: #333; /* Dark color for the labels */
-  display: block; /* Ensures the label is above the value */
-  margin-bottom: 5px; /* Small space between label and value */
+.modal button:hover {
+  background-color: #ff4b6f; /* Hover effect */
 }
 
-/* Value styling (the numbers) */
-.game-status-value {
-  font-size: 1.5rem; /* Larger font size for the values */
-  color: #ff4500; /* Match the color to the game theme */
+.modal button {
+  display: inline-block;
+  margin: 10px;
+}
+
+/* Specific Styling for Pause Modal */
+#pauseModal {
+  display: none;
+  width: 240px; /* Must match .modal */
+  min-height: 140px;
+}
+
+/* Specific Styling for End Game Modal */
+#endGameModal {
+  display: none;
+  width: 240px; /* Must match .modal */
+  min-height: 140px;
+}
+
+#finalScore {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ff69b4;
+}
+
+/* Styling for the Timer */
+#timer {
+  font-size: 1.5rem;
+  color: #ff69b4;
+}
+
+/* Center the Start Game button ONLY on index.html */
+body.index-page .startGameContainer {
+  text-align: center; /* Center the button horizontally */
+}
+
+/* Style the Start Game button on index.html */
+body.index-page #startGame {
+  background-color: #ff69b4; /* Pink */
+  color: white;
+  font-size: 0.9em; /* Your desired smaller font size */
+  padding: 8px 16px; /* Your desired smaller padding */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 160px;
+  height: 50px;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Optional hover effect */
+body.index-page #startGame:hover {
+  transform: scale(0.95);
+}
+
+/* Pause Modal */
+#pauseModal {
+  display: none; /* Initially hidden */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  z-index: 9999; /* Make sure it’s on top */
+  width: 600px;
+  min-height: 200px;
+}
+
+#pauseModal p {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 100px;
+}
+
+#pauseModal button {
+  width: 120px;
+  height: 40px;
+  margin-top: 10px;
+  font-size: 1rem;
+  color: white;
+  background-color: #ff69b4;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#pauseModal button:hover {
+  background-color: #ff4b6f;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  #gameBoard {
+    grid-template-columns: repeat(3, 120px);
+  }
+
+  button {
+    height: 120px;
+    font-size: 1.2rem;
+  }
+
+  .game-buttons button {
+    width: 100px;
+    height: 35px;
+    font-size: 0.9rem;
+  }
+
+  #pauseModal,
+  #endGameModal {
+    width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  #gameBoard {
+    grid-template-columns: repeat(2, 90px);
+    gap: 12px;
+    padding: 10px;
+  }
+
+  button {
+    height: 60px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+  }
+
+  .game-status-value,
+  #timer {
+    font-size: 0.9rem;
+    font-display: inline;
+  }
+
+  .game-status {
+    width: 45%;
+    text-align: center;
+  }
+  .game-status span {
+    font-size: 0.9rem;
+  }
+  .game-status-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .game-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .game-buttons button {
+    width: 100px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+
+  nav {
+    font-size: 0.9rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .modal,
+  #pauseModal,
+  #endGameModal {
+    width: 90%;
+    min-height: auto;
+    padding: 16px;
+  }
+
+  #pauseModal p {
+    font-size: 1rem;
+    margin: 20px 0;
+  }
+
+  .modal button,
+  #pauseModal button {
+    width: 100px;
+    height: 35px;
+    font-size: 0.9rem;
+  }
+}
+
+/* New Additions */
+
+/* Card Flip Animation */
+.card-inner {
+  transition: transform 0.6s ease-in-out;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Dark Mode Toggle Button */
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+body.dark-mode h1,
+body.dark-mode .game-status-value,
+body.dark-mode #finalScore,
+body.dark-mode #timer {
+  color: #ff69b4; /* Keep the pink color for consistency */
+}
+
+body.dark-mode .game-buttons button {
+  background-color: #333;
+  color: white;
+}
+
+body.dark-mode .game-buttons button:hover {
+  background-color: #444;
+}
+
+/* Dark Mode Specific Modal Styling */
+body.dark-mode #pauseModal,
+body.dark-mode #endGameModal {
+  background-color: #2c3e50;
+  color: white;
+}
+
+/* Transition for Body Background and Text Color */
+body.dark-mode {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }

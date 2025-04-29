@@ -8,39 +8,40 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <!-- navigation between pages  -->
+    <!-- navigation between pages -->
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
       </ul>
     </nav>
     <div id="game-container">
-      <!-- Game Status Container -->
-      <div class="game-status-container">
-        <div class="game-status">
-          <span>Score</span>
-          <div id="score" class="game-status-value">0</div>
-          <!-- Dynamic score -->
+      <!-- Game Display Content -->
+      <div id="gameContent">
+        <!-- Game Status Container -->
+        <div class="game-status-container">
+          <div class="game-status">
+            <span>Score</span>
+            <div id="score" class="game-status-value">0</div>
+          </div>
+          <div class="game-status">
+            <span>Lives</span>
+            <div id="lives" class="game-status-value">3</div>
+          </div>
+          <div class="game-status">
+            <span>Level</span>
+            <div id="level" class="game-status-value">1</div>
+          </div>
+          <div class="game-status">
+            <span>Time</span>
+            <div id="timer" class="game-status-value">00:00</div>
+          </div>
         </div>
-        <div class="game-status">
-          <span>Lives</span>
-          <div id="lives" class="game-status-value">3</div>
-          <!-- Dynamic lives -->
-        </div>
-        <div class="game-status">
-          <span>Level</span>
-          <div id="level" class="game-status-value">1</div>
-          <!-- Dynamic level -->
-        </div>
-        <div class="game-status">
-          <span>Time</span>
-          <div id="timer" class="game-status-value">00:00</div>
-          <!-- Dynamic time -->
+
+        <!-- Game Board -->
+        <div id="gameBoard" class="game-board">
+          <!-- Cards are dynamically inserted here -->
         </div>
       </div>
-
-      <!-- Game Board -->
-      <div id="gameBoard"></div>
 
       <!-- Game Buttons -->
       <div class="game-buttons">
@@ -49,21 +50,21 @@
         <button id="quitGame">Quit Game</button>
         <button id="hintButton">Get Hint</button>
       </div>
+    </div>
 
-      <!-- Pause Modal -->
-      <div id="pauseModal">
-        <p>Game paused.</p>
-        <button id="resumeButton">Resume</button>
-        <button id="quit">Quit</button>
-      </div>
+    <!-- Pause Modal -->
+    <div id="pauseModal" class="modal">
+      <p>Game paused.</p>
+      <button id="resumeButton" onclick="resumeGame()">Resume</button>
+      <button id="quit" onclick="quitGame()">Quit</button>
+    </div>
 
-      <!-- End Game Modal -->
-      <div id="endGameModal">
-        <p id="finalMessage"></p>
-        <p>Your final score is <span id="finalScore"></span>.</p>
-        <button id="replayButton">Play Again</button>
-        <button id="exitButton">Exit</button>
-      </div>
+    <!-- End Game Modal -->
+    <div id="endGameModal" class="modal">
+      <p id="finalMessage"></p>
+      <p>Your final score is <span id="finalScore"></span>.</p>
+      <button id="replayButton">Play Again</button>
+      <button id="exitButton">Exit</button>
     </div>
   </body>
 </html>
