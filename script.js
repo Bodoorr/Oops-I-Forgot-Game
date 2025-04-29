@@ -60,11 +60,17 @@ const initializeGame = () => {
 }
 
 // Hints function
+// Hints function
 const getHints = () => {
   const hintButton = document.getElementById('hintButton')
+  if (!hintButton) {
+    console.error("Element with ID 'hintButton' not found.")
+    return // Exit if hintButton is not found
+  }
   hintButton.disabled = false
   hintButton.innerText = 'Get Hint'
   hintUsed = false
+
   hintButton.onclick = () => {
     if (gameState !== 'running') return
 
@@ -76,8 +82,8 @@ const getHints = () => {
     const confirmUse = confirm(
       'You can only use one hint per level. Are you sure you want to use it?'
     )
-
     if (!confirmUse) return
+
     const cardCounts = {}
     cards.forEach((card, index) => {
       if (
@@ -87,6 +93,7 @@ const getHints = () => {
         return
       cardCounts[card] = (cardCounts[card] || []).concat(index)
     })
+
     for (const indices of Object.values(cardCounts)) {
       if (indices.length > 1) {
         highlightCards(indices[0], indices[1])
@@ -210,11 +217,11 @@ const cardClick = (card, index) => {
 
 // Pause Game
 const pauseGame = () => {
-  console.log('pause button clicked')
   gameState = 'paused'
   clearInterval(timer)
   document.getElementById('pauseModal').style.display = 'block' // Show pause modal
   document.getElementById('gameContent').style.display = 'none'
+  document.getElementById('test').style.display = 'none'
 }
 
 // Resume Game
@@ -222,6 +229,7 @@ const resumeGame = () => {
   gameState = 'running'
   document.getElementById('pauseModal').style.display = 'none' // Hide pause modal
   document.getElementById('gameContent').style.display = 'block'
+  document.getElementById('test').style.display = 'block'
   alert('Game resumed')
   startTimer()
 }
@@ -324,17 +332,55 @@ const peekCards = (afterPeek) => {
     if (afterPeek) afterPeek()
   }, 3000)
 }
+document.addEventListener('DOMContentLoaded', () => {
+  // Do NOT call getHints() here
 
-// Event listeners for buttons
-document.getElementById('startGame').onclick = () => {
-  initializeGame() // Start the game
-}
+  // Event listeners for buttons
+  const startGameButton = document.getElementById('startGame')
+  const pauseGameButton = document.getElementById('pauseGame')
+  const quitGameButton = document.getElementById('quitGame')
+  const resumeButton = document.getElementById('resumeButton')
+  const replayButton = document.getElementById('replayButton')
+  const exitButton = document.getElementById('exitButton')
+  const quitButton = document.getElementById('quit')
 
-document.getElementById('pauseGame').onclick = pauseGame
-document.getElementById('quitGame').onclick = quitGame
-document.getElementById('resumeButton').onclick = resumeGame
-document.getElementById('replayButton').onclick = replayGame
-document.getElementById('exitButton').onclick = exitGame
-document.getElementById('quit').onclick = quitGame
-// Initialize hints
-getHints()
+  if (startGameButton) {
+    startGameButton.onclick = initializeGame
+  }
+  if (pauseGameButton) {
+    pauseGameButton.onclick = pauseGame
+  }
+  if (quitGameButton) {
+    quitGameButton.onclick = quitGame
+  }
+  if (resumeButton) {
+    resumeButton.onclick = resumeGame
+  }
+  if (replayButton) {
+    replayButton.onclick = replayGame
+  }
+  if (exitButton) {
+    exitButton.onclick = exitGame
+  }
+  if (quitButton) {
+    quitButton.onclick = quitGame
+  }
+})
+// Dark Mode Toggle
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.getElementById('darkModeToggle')
+
+  // Load saved mode
+  const isDark = localStorage.getItem('darkMode') === 'true'
+  if (isDark) {
+    document.body.classList.add('dark-mode')
+    toggle.innerText = '☀️'
+  }
+
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode')
+    const darkModeActive = document.body.classList.contains('dark-mode')
+    localStorage.setItem('darkMode', darkModeActive)
+    toggle.innerText = darkModeActive ? '☀️' : '🌙'
+  })
+})
