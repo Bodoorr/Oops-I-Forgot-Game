@@ -16,7 +16,6 @@
     </nav>
     <div id="game-container">
       <div id="score">Score: 0</div>
-      <div id="highScore">High Score: 0</div>
       <div id="lives">Lives: 3</div>
       <div id="level">Level: 1</div>
       <div id="gameBoard"></div>
@@ -35,9 +34,10 @@
     </div>
 
     <div id="endGameModal">
-      <p>Game Over! Your final score is <span id="finalScore"></span>.</p>
-      <button id="replayButton">Yes</button>
-      <button id="exitButton">No</button>
+      <p id="finalMessage"></p>
+      <p>Your final score is <span id="finalScore"></span>.</p>
+      <button id="replayButton">Play Again</button>
+      <button id="exitButton">Exit</button>
     </div>
   </body>
 </html>

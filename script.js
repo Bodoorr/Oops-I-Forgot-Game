@@ -1,6 +1,5 @@
 // Global Variables:
 let score = 0 // to define the score
-let highScore = 0 // to define the high Score
 let playerLives = 3 // define the player lives starting with 3
 let currentLevel = 1 // starting with level 1
 let gameState = 'running' // game states: running, paused, over
@@ -9,6 +8,11 @@ let pickedCards = [] // array for picked cards
 let pickedCardIndices = [] // array for indices of picked cards
 let matchedCardIndices = [] // array to track selected cards
 let timer
+
+// Alert welcome message
+let playerName = prompt('Enter your name to start the game:') || 'Player'
+alert(`Welcome, ${playerName}! press 'Start Game' to begin.`)
+
 // Generate Cards: generate the cards based on the current level
 const generateCards = (level) => {
   cards = [] // reset cards
@@ -23,18 +27,11 @@ const generateCards = (level) => {
     //last level
     numberOfCards = 20
   }
-  //   else {
-  // // //   alert('Congrats! You passed all levels.')
-  // // // }
-
   for (let i = 1; i <= numberOfCards / 2; i++) {
     cards.push(`Card ${i}`, `Card ${i}`) // Add pairs of cards
   }
   cards.sort(() => Math.random() - 0.5) // shuffle the cards
 }
-
-// Alert welcome message
-alert("WELCOME! press 'Start Game' to begin.")
 
 // Game Initialization
 const initializeGame = () => {
@@ -51,6 +48,7 @@ const initializeGame = () => {
   peekCards(() => {
     setTimer(currentLevel)
   })
+  document.getElementById('startGame').style.display = 'none'
 }
 
 // Hints function
@@ -130,44 +128,55 @@ const cardClick = (card, index) => {
     setTimeout(() => {
       if (pickedCards[0] === pickedCards[1]) {
         score++
-        highScore = Math.max(highScore, score) // to update the high score
-        alert("It's a match!") // Alert for a match
+        alert(`It's a match, ${playerName}!`)
         matchedCardIndices.push(pickedCardIndices[0], pickedCardIndices[1])
+
         const matchedPairs = matchedCardIndices.length / 2
         const totalPairs = cards.length / 2
-        if (matchedPairs === totalPairs && currentLevel < 4) {
-          pickedCards = []
-          pickedCardIndices = []
-          matchedCardIndices = []
 
-          currentLevel++
-          generateCards(currentLevel)
+        if (matchedPairs === totalPairs) {
+          if (currentLevel < 4) {
+            pickedCards = []
+            pickedCardIndices = []
+            matchedCardIndices = []
 
-          playerLives = 3
+            currentLevel++
+            generateCards(currentLevel)
+            playerLives = 3
 
-          alert('Level UP!')
-          displayCards()
-          updateDisplay()
-          getHints()
-          peekCards(() => {
-            setTimer(currentLevel) //timer for each level
-          })
-        } //level up condition
+            alert(
+              `Level UP, ${playerName}! Get ready for level ${currentLevel}.`
+            )
+            displayCards()
+            updateDisplay()
+            getHints()
+            peekCards(() => {
+              setTimer(currentLevel)
+            })
+          } else {
+            gameState = 'over'
+            alert(
+              `🎉 Congratulations ${playerName}, you've completed all levels!`
+            )
+            endGame()
+          }
+        }
       } else {
         playerLives--
-        alert('Not a match! You lost a life.')
+        alert(`Not a match, ${playerName}! You lost a life.`)
         pickedCardIndices.forEach((i) => {
           buttons[i].innerText = '?'
         })
-      }
-      updateDisplay()
-      if (playerLives <= 0) {
-        gameState = 'over'
-        endGame()
+
+        if (playerLives <= 0) {
+          gameState = 'over'
+          endGame()
+        }
       }
 
+      updateDisplay()
       allButtons.forEach((button) => (button.disabled = false))
-      pickedCards = [] // clear
+      pickedCards = []
       pickedCardIndices = []
     }, 1000)
   }
@@ -205,6 +214,13 @@ const endGame = () => {
   document.getElementById('endGameModal').style.display = 'block' // Show end game modal
   document.getElementById('gameBoard').innerHTML = '' //remove all cards
   clearInterval(timer)
+
+  const message =
+    playerLives <= 0
+      ? `Game Over, ${playerName}! You lost all your lives. Play again?`
+      : `Well Done, ${playerName}! You've completed all levels. Replay? `
+
+  document.getElementById('finalMessage').innerText = message
 }
 
 // Replay Game Function
@@ -215,8 +231,9 @@ const replayGame = () => {
 
 // Exit Game Function
 const exitGame = () => {
-  alert('Thank you for playing!')
+  alert(`Thank you for playing, ${playerName}!`)
   document.getElementById('endGameModal').style.display = 'none'
+  document.getElementById('startGame').style.display = 'inline-block'
 }
 
 //function for timer
