@@ -403,7 +403,7 @@ const peekCards = (afterPeek) => {
 
     // If an "afterPeek" function is provided, execute it
     if (afterPeek) afterPeek()
-  }, 3000) // Show the cards for 3 seconds
+  }, 6000) // Show the cards for 3 seconds
 }
 
 // Event listener for when the DOM content has fully loaded
@@ -460,3 +460,17 @@ document.addEventListener('DOMContentLoaded', () => {
     toggle.innerText = darkModeActive ? '☀️' : '🌙' // Change button text based on dark mode state (sun for light mode, moon for dark mode)
   })
 })
+
+// Example for adding the winning animation
+document.getElementById('startGame').addEventListener('click', () => {
+  // When the game starts, apply the pulse animation
+  document.getElementById('startGame').classList.add('pulse')
+})
+
+// If you have a win condition, you can trigger the flash animation like this:
+const triggerWinAnimation = () => {
+  document.body.classList.add('win-flash')
+  setTimeout(() => {
+    document.body.classList.remove('win-flash')
+  }, 500)
+}
