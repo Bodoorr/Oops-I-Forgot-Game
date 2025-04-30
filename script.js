@@ -468,7 +468,7 @@ document.getElementById('startGame').addEventListener('click', () => {
   document.getElementById('startGame').classList.add('pulse')
 })
 
-// If you have a win condition, you can trigger the flash animation like this:
+// trigger the flash animation (USED AI FOR THIS PARTS):
 const triggerWinAnimation = () => {
   document.body.classList.add('win-flash')
   setTimeout(() => {
