@@ -27,22 +27,37 @@ Memory Flash Cards is a fun game that boosts your memory. Players flip cards to 
 1. Card Pairs
 2. Move Tracking
 3. Score Tracker
+4. Timer
+5. Dark mode
+6. Hints
 
 - Customizable notifications
 
 ---
 
-#### Home page (i will add the image after i create it)
+#### Home page (Bright mode)
 
-![Image]()
+![Image](https://i.imgur.com/b9HWM9J.png)
 
-#### Game page (i will add the image after i create it)
+#### Home page (Dark mode)
 
-![Image]()
+![Image](https://i.imgur.com/ylXnOI0.png)
 
-#### Game preview (i will add the image after i create it)
+#### Game page (Bright mode)
 
-![Image]()
+![Image](https://i.imgur.com/mrBHfMR.png)
+
+#### Game page (Dark mode)
+
+![Image](https://i.imgur.com/Qq7HSlr.png)
+
+#### End Game page (Bright mode)
+
+![Image](https://i.imgur.com/WURy823.png)
+
+#### End Game page (Dark mode)
+
+![Image](https://i.imgur.com/N4FWos9.png)
 
 ---
 
@@ -59,5 +74,7 @@ Memory Flash Cards is a fun game that boosts your memory. Players flip cards to 
 ##### Markdown Guide: [ia.net](https://ia.net/writer/support/general/markdown-guide)
 
 ##### Markdown Cheatsheet: [GitHub](https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf)
+
+##### ChatGPT: [chat.openai.com](https://chat.openai.com)
 
 ---

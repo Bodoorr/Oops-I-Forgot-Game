@@ -300,6 +300,7 @@ const quitGame = () => {
   if (confirmation) {
     gameState = 'over' // End the game
     endGame() // Call end game logic
+    document.getElementById('test').style.display = 'none'
   }
 }
 
@@ -334,6 +335,7 @@ const exitGame = () => {
   document.getElementById('endGameModal').style.display = 'none' // Hide end game modal
   document.getElementById('startGame').style.display = 'inline-block' // Show start button
   document.getElementById('gameContent').style.display = 'none' // Hide game content
+  document.getElementById('test').style.display = 'none' // Show additional elements (e.g., timer)
   clearInterval(timer) // Ensure timer is cleared
 }
 // Function for starting the countdown timer

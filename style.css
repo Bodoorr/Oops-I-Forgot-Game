@@ -132,6 +132,7 @@ nav ul li a:hover {
   grid-template-columns: repeat(4, 150px); /* 4 columns with 150px width */
   gap: 20px;
   justify-content: center;
+  margin-top: 50px;
   margin-bottom: 20px;
   padding: 20px;
 }
