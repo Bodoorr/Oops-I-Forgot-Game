@@ -29,7 +29,7 @@ const generateCards = (level) => {
 
   // Generate pairs of cards
   for (let i = 1; i <= numberOfCards / 2; i++) {
-    cards.push(`Card ${i}`, `Card ${i}`) // Add each pair (e.g., Card 1, Card 1)
+    cards.push(i, i) // Add each pair (e.g., Card 1, Card 1)
   }
 
   // Shuffle the cards randomly using Fisher-Yates method
@@ -247,6 +247,7 @@ const cardClick = (card, index) => {
             alert(
               `🎉 Congratulations ${playerName}, you've completed all levels!`
             )
+            triggerWinAnimation()
             endGame()
           }
         }
